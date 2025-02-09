@@ -1,6 +1,6 @@
-﻿namespace OpenGLC.MVC.Security
+﻿namespace OpenGLC.Models.Security
 {
-	public class SecurityKeys : ISecurityKeys
+	public interface ISecurityKeys
 	{
 		public string passwordPrivateKey { get; set; }
 		public string JWT_PrivateKey { get; set; }

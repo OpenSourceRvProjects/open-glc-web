@@ -1,6 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using OpenGLC.Models.Security;
-using OpenGLC.MVC.Security;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

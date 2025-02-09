@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenGLC.Infrastructure;
+using OpenGLC.Infrastructure.Interfaces;
+using OpenGLC.Security;
 using System.Text;
+
 
 namespace OpenGLC.MVC
 {
@@ -65,6 +69,23 @@ namespace OpenGLC.MVC
 				});
 			});
 
+		}
+
+		public static void InjectServices(this IServiceCollection services)
+		{
+			//services.AddTransient<IUserService, UserService>();
+			//services.AddTransient<IMealItemService, MealItemService>();
+			//services.AddTransient<IMealEventService, MealEventService>();
+
+			services.AddTransient<IUserRepository, UserRepository>();
+			services.AddTransient<IMealItemRepository, MealItemRepository>();
+			services.AddTransient<IMealEventRepository, MealEventRepository>();
+			services.AddTransient<IMealEventItemsRepository, MealEventItemsRepository>();
+
+			services.AddTransient<EncryptorEngine>();
+			services.AddTransient<DecryptorEngine>();
+			services.AddTransient<TokenHandlerEngine>();
+			//services.AddTransient<ControllerUtilities>();
 		}
 	}
 

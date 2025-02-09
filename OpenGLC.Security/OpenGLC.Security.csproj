@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OpenGLC.Models\OpenGLC.Models.csproj" />
-    <ProjectReference Include="..\OpenGLC.MVC\OpenGLC.MVC.csproj" />
   </ItemGroup>
 
   <ItemGroup>

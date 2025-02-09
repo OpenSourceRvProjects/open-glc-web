@@ -1,5 +1,5 @@
 using OpenGLC.MVC;
-using OpenGLC.MVC.Security;
+using OpenGLC.Models.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 

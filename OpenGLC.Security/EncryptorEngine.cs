@@ -1,5 +1,4 @@
 ﻿using OpenGLC.Models.Security;
-using OpenGLC.MVC.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OpenGLC.Security
 {
-    public class EncryptorEngine
+	public class EncryptorEngine
 	{
 
 		private readonly ISecurityKeys _securityKeysValues;
