@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OpenGLC.Data\OpenGLC.Data.csproj" />
+    <ProjectReference Include="..\OpenGLC.Models\OpenGLC.Models.csproj" />
+  </ItemGroup>
+
 </Project>
