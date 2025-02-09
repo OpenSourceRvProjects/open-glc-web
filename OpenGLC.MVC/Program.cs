@@ -20,7 +20,7 @@ builder.Services.AddHttpContextAccessor();
 ////Initialize the Instances within ConfigServices in Startup .NET
 ////https://www.thecodebuzz.com/initialize-instances-within-configservices-in-startup/
 ////https://www.roundthecode.com/dotnet/how-to-read-the-appsettings-json-configuration-file-in-asp-net-core
-var securityKeys = builder.Configuration.GetSection("security").Get<ISecurityKeys>();
+var securityKeys = builder.Configuration.GetSection("security").Get<SecurityKeys>();
 
 builder.Services.AddSingleton<ISecurityKeys>((serviceProvider) =>
 {
@@ -29,6 +29,7 @@ builder.Services.AddSingleton<ISecurityKeys>((serviceProvider) =>
 
 builder.Services.AddCustomAuthentication(securityKeys.JWT_PrivateKey);
 
+builder.Services.AddCustomSwaggerGen();
 
 var app = builder.Build();
 
@@ -39,6 +40,9 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseSession();
 
@@ -46,6 +50,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
