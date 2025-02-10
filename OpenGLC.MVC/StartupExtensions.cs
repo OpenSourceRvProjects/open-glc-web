@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using OpenGLC.Backend.Services;
 using OpenGLC.Infrastructure;
 using OpenGLC.Infrastructure.Interfaces;
+using OpenGLC.Infrastructure.Services;
 using OpenGLC.Security;
 using System.Text;
 
@@ -73,7 +75,7 @@ namespace OpenGLC.MVC
 
 		public static void InjectServices(this IServiceCollection services)
 		{
-			//services.AddTransient<IUserService, UserService>();
+			services.AddTransient<IUserService, UserService>();
 			//services.AddTransient<IMealItemService, MealItemService>();
 			//services.AddTransient<IMealEventService, MealEventService>();
 
