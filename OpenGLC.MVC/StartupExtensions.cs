@@ -76,8 +76,8 @@ namespace OpenGLC.MVC
 		public static void InjectServices(this IServiceCollection services)
 		{
 			services.AddTransient<IUserService, UserService>();
-			//services.AddTransient<IMealItemService, MealItemService>();
-			//services.AddTransient<IMealEventService, MealEventService>();
+			services.AddTransient<IMealItemService, MealItemService>();
+			services.AddTransient<IMealEventService, MealEventService>();
 
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<IMealItemRepository, MealItemRepository>();
@@ -87,7 +87,7 @@ namespace OpenGLC.MVC
 			services.AddTransient<EncryptorEngine>();
 			services.AddTransient<DecryptorEngine>();
 			services.AddTransient<TokenHandlerEngine>();
-			//services.AddTransient<ControllerUtilities>();
+			services.AddTransient<ControllerUtilities>();
 		}
 	}
 
