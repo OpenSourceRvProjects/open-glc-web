@@ -1,0 +1,42 @@
+<div class="registration-form">
+  <form>
+    <div class="form-group; text-center">
+      <h3>Registro de nuevo usuario</h3>
+    </div>
+    <br>
+    <div class="form-group">
+      <input type="text" class="form-control item" id="name" [disabled]="processing" name="name" [(ngModel)]="newUser.name" placeholder="Nombre">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control item" id="firstName" [disabled]="processing" name="firstName" [(ngModel)]="newUser.firstName" placeholder="Apellido">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control item" id="firstName" [disabled]="processing" name="email" [(ngModel)]="newUser.userName" placeholder="Nombre usuario">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control item" id="password" [disabled]="processing" name="password" [(ngModel)]="newUser.password" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control item" id="passwordConfirm" [disabled]="processing" name="name" [(ngModel)]="passwordConfirm" placeholder="Confirmar password">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control item" id="email" [disabled]="processing" name="email" [(ngModel)]="newUser.email" placeholder="Email">
+    </div>
+
+    <div *ngIf="processing" class="form-group; text-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!processing" class="form-group; text-center">
+      <button type="button" class="btn btn-block create-account" (click)="createAccount()">Crear cuenta</button>
+    </div>
+
+    <br>
+    <div *ngIf="errorMessage" class="form-group; text-center">
+      <h4 style="color: red;">{{errorMessage}}</h4>
+    </div>
+  </form>
+
+</div>
