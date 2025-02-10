@@ -1,11 +1,19 @@
 using OpenGLC.MVC;
 using OpenGLC.Models.Security;
+using Microsoft.EntityFrameworkCore;
+using OpenGLC.Data.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.InjectServices();
+
+builder.Services.AddDbContext<OpenglclevelContext>(options => options.
+	   UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services.AddMvc()
 		.AddSessionStateTempDataProvider();
@@ -14,6 +22,8 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
 builder.Services.AddHttpContextAccessor();
+
+
 
 
 ////Google search: services AddScopped instanciate
