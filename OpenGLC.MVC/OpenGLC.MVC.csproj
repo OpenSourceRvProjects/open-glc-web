@@ -38,8 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\Models\" />
-    <Folder Include="ClientApp\src\app\Pages\Login\" />
+    <Folder Include="ClientApp\src\app\Security\" />
     <Folder Include="ClientApp\src\app\Services\" />
   </ItemGroup>
 
