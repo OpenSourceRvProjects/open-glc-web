@@ -12,7 +12,7 @@ export class AccountService {
 
   login(userName: string, password: string, generateDeleteToken: boolean = false) {
     debugger;
-    var requestQry = "Account/login?userName=" + userName + "&password=" + password;
+    var requestQry = "api/Account/login?userName=" + userName + "&password=" + password;
     if (generateDeleteToken === true) {
       requestQry += "&tokenForDeleteAction=true"
     }
