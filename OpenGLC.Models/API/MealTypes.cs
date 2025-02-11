@@ -13,12 +13,16 @@ namespace OpenGLC.Models.API
         {
             Meals =
             [
-                new MealNameType(0, "Desayuno"),
+				new MealNameType(-1, "Sin comida"),
+				new MealNameType(0, "Desayuno"),
                 new MealNameType(1, "Almuerzo"),
                 new MealNameType(2, "Comida"),
                 new MealNameType(3, "Merienda"),
                 new MealNameType(4, "Cena"),
-            ];
+				new MealNameType(5, "Snack"),
+
+
+			];
 
             return Meals;
         }
