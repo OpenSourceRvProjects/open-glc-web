@@ -14,6 +14,8 @@ import { NewRegisterComponent } from './Pages/Register/new-register.component';
 import { LoginComponent } from './Pages/Login/login.component';
 import { MealEventComponent } from './Pages/MealEvent/meal-event.component';
 import { EventsComponent } from './Pages/EventsList/events.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,14 @@ import { EventsComponent } from './Pages/EventsList/events.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    GoogleChartsModule
     //RouterModule.forRoot([
     //  { path: '', component: HomeComponent, pathMatch: 'full' },
     //  { path: 'counter', component: CounterComponent },
     //  { path: 'fetch-data', component: FetchDataComponent },
     //])
   ],
+  //schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
