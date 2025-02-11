@@ -57,6 +57,16 @@ namespace OpenGLC.MVC.Controllers
 			return Ok(result);
 		}
 
+		[HttpGet]
+		[Route("lastThreeMonthsLevels")]
+		[AutomaticExceptionHandler]
+		[UserActionFilter]
+		public async Task<IActionResult> LastThreeMonthsLevels()
+		{
+			var result = await _eventSC.GetLast3MonthsLevels();
+			return Ok(result);
+		}
+
 		// POST api/<MealEventsController>
 		[HttpPost]
 		[AutomaticExceptionHandler]

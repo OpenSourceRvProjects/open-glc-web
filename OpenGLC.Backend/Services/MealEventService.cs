@@ -175,6 +175,16 @@ namespace OpenGLC.Backend.Services
 
 		}
 
+		public async Task<List<int>> GetLast3MonthsLevels()
+		{
+			var userID = Guid.Parse(_httpContextAccessor.HttpContext.Session.GetString("userID"));
+			var today =  DateTime.Now;
+			var threeMonthsAgo = today.AddMonths(-3);
+			var audienceEvents = _eventRepo.FindByExpresion(f=> f.UserId == userID && f.CreationDate >= threeMonthsAgo);
+			var result =await audienceEvents.OrderBy(od => od.CreationDate).Select(s=> s.GlcLevel).ToListAsync();
+			return result;
+		}
+
 		public MealEventDedtailsModel GetMealEventDetails(Guid eventId)
 		{
 			var result = new MealEventDedtailsModel();

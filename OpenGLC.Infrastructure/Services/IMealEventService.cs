@@ -16,5 +16,6 @@ namespace OpenGLC.Infrastructure.Services
 		public Task<UserMetricsModel> GetEventsGlcAverage();
 		MealEventDedtailsModel GetMealEventDetails(Guid eventId);
 		public Task<bool> DeleteEventMealWithItems(Guid mealEvent);
+		Task<List<int>> GetLast3MonthsLevels();
 	}
 }

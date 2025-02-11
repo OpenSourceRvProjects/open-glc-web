@@ -21,6 +21,14 @@ export class EventMealsService {
     return this.httpClient.get(this.baseUrl + "api/MealEvents/userEventMetrics", options);
   }
 
+  getLastThreeMonths() {
+
+    const options = { withCredentials: true, headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.getUserData().token }) };
+
+    return this.httpClient.get(this.baseUrl + "api/MealEvents/lastThreeMonthsLevels", options);
+  }
+
+
   getMealEventTypes() {
     const options = { withCredentials: true, headers: new HttpHeaders({ 'Authorization': 'Bearer ' + this.authService.getUserData().token }) };
 

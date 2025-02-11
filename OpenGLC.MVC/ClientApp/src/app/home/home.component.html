@@ -1,4 +1,4 @@
-<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 85vh;">
+<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
 
   <!-- Card -->
   <div class="card text-center" style="padding-top: 50px;">
@@ -36,10 +36,10 @@
   </div>
 
   <!-- Google Chart placed below the card -->
-  <google-chart #chart
+  <google-chart *ngIf="showGraph" #chart
                 [title]="title"
                 [type]="type"
-                [data]="data"
+                [data]="dataForGraph"
                 [columns]="columnNames"
                 [options]="options"
                 [width]="width"
