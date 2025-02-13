@@ -24,7 +24,7 @@ export class BarChartComponent implements OnInit {
 
   //npm install angular-google - charts@12
   public type: ChartType = ChartType.ColumnChart;
-  columnNames = ['Medición', ''];
+  columnNames = ['Medición', 'Glucosa'];
   title = 'Niveles de azucar';
   options = {
     curveType: 'function',

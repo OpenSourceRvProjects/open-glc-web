@@ -18,6 +18,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { LineChartComponent } from './Components/Graphs/line-chart.component';
 import { BarChartComponent } from './Components/Graphs/bar-chart.component';
+import { ChartComponent } from './Components/Graphs/chart.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BarChartComponent } from './Components/Graphs/bar-chart.component';
     MealEventComponent,
     EventsComponent,
     LineChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

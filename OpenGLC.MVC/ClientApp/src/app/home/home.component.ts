@@ -10,6 +10,7 @@ import { ChartType } from 'angular-google-charts'; // Import the ChartType enum
 export class HomeComponent implements OnInit {
   constructor(private eventService: EventMealsService) { }
 
+  public ChartType = ChartType;
   userData: any = {};
   serverData: number[] = [];
   readyToRenderGraphComponent: boolean = false;
