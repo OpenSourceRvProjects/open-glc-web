@@ -50,14 +50,7 @@ export class HomeComponent implements OnInit {
 
   title = 'Niveles de azucar';
   public type: ChartType = ChartType.LineChart;
-  //data = [
-  //  ["", 200],
-  //  ["", 560],
-  //  ["", 280],
-  //  ["", 300],
-  //  ["", 600]
-  //];
-  columnNames = ['Medición', 'Nivel de Glc'];
+  columnNames = ['Medición', 'Glucosa'];
   options = {
     curveType: 'function', legend: { position: 'bottom' },
     //trendlines: { 0: {} }
@@ -82,7 +75,5 @@ export class HomeComponent implements OnInit {
     this.width = event.target.innerWidth * 0.9;  // 80% of the viewport width
     this.height = event.target.innerHeight * 0.6; // Adjust height based on screen
   }
-  //width = 600;
-  //height = 400;  
 
 }
