@@ -16,6 +16,8 @@ import { MealEventComponent } from './Pages/MealEvent/meal-event.component';
 import { EventsComponent } from './Pages/EventsList/events.component';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
+import { LineChartComponent } from './Components/Graphs/line-chart.component';
+import { BarChartComponent } from './Components/Graphs/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
     NewRegisterComponent,
     LoginComponent,
     MealEventComponent,
-    EventsComponent
+    EventsComponent,
+    LineChartComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

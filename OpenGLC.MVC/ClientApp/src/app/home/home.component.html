@@ -36,24 +36,6 @@
   </div>
 
   <!-- Google Chart placed below the card -->
-  <google-chart *ngIf="showGraph" #chart
-                [title]="title"
-                [type]="type"
-                [data]="dataForGraph"
-                [columns]="columnNames"
-                [options]="options"
-                [width]="width"
-                [height]="height">
-  </google-chart>
-
-  <google-chart *ngIf="showGraph" #chart
-                [title]="title"
-                [type]="type"
-                [data]="dataForGraph"
-                [columns]="columnNames"
-                [options]="options"
-                [width]="width"
-                [height]="height">
-  </google-chart>
-
+  <glc-line-chart></glc-line-chart>
+  <glc-bar-chart></glc-bar-chart>
 </div>
