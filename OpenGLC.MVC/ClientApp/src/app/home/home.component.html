@@ -36,6 +36,6 @@
   </div>
 
   <!-- Google Chart placed below the card -->
-  <glc-line-chart></glc-line-chart>
-  <glc-bar-chart></glc-bar-chart>
+  <glc-line-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData"></glc-line-chart>
+  <glc-bar-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData"></glc-bar-chart>
 </div>

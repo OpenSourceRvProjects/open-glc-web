@@ -12,19 +12,34 @@ export class HomeComponent implements OnInit {
 
   userData: any = {};
   serverData: number[] = [];
-  showGraph: boolean = false;
+  readyToRenderGraphComponent: boolean = false;
   dataForGraph: [number, number][] = [];
   ngOnInit(): void {
 
     this.eventService.getUserMetrics().subscribe({
       next: (data: any) => {
         this.userData = data;
-
+        this.getLast3MonthsForGraph();
       },
       error: (err) => {
         alert("Ha ocurrido un error -->" + err.error.errorMessages[0]);
       },
     });
+  }
 
+
+  getLast3MonthsForGraph() {
+    this.eventService.getLastThreeMonths().subscribe({
+      next: (data: any) => {
+        this.serverData = data;
+        //https://stackoverflow.com/questions/19642276/google-charts-trendline-not-showing?rq=1
+        //cannot use the forEach, it seeks the indexOf a value, not the reference. so You need to specify second parameter for array
+        //this.serverData.forEach(fe => this.dataForGraph.push([this.serverData.indexOf(fe), fe]));
+        this.readyToRenderGraphComponent = true;
+      },
+      error: (err) => {
+        alert("Ha ocurrido un error -->" + err.error.errorMessages[0]);
+      },
+    });
   }
 }

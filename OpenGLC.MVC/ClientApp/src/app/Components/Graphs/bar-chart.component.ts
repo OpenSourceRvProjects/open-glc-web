@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { ChartType } from 'angular-google-charts'; // Import the ChartType enum
 import { EventMealsService } from '../../Services/event-meals.service';
 
@@ -11,28 +11,15 @@ export class BarChartComponent implements OnInit {
   constructor(private eventService: EventMealsService) { }
 
   userData: any = {};
+
+  @Input()
   serverData: number[] = [];
+
   showGraph: boolean = false;
   dataForGraph: [number, number][] = [];
   ngOnInit(): void {
-    this.getLast3MonthsForGraph();
-  }
-
-  getLast3MonthsForGraph() {
-    this.eventService.getLastThreeMonths().subscribe({
-      next: (data: any) => {
-        this.serverData = data;
-        //https://stackoverflow.com/questions/19642276/google-charts-trendline-not-showing?rq=1
-        //cannot use the forEach, it seeks the indexOf a value, not the reference. so You need to specify second parameter for array
-        //this.serverData.forEach(fe => this.dataForGraph.push([this.serverData.indexOf(fe), fe]));
-        this.serverData.forEach((fe, index) => this.dataForGraph.push([index +1, fe]));
-        debugger;
-        this.showGraph = true;
-      },
-      error: (err) => {
-        alert("Ha ocurrido un error -->" + err.error.errorMessages[0]);
-      },
-    });
+    this.serverData.forEach((fe, index) => this.dataForGraph.push([index + 1, fe]));
+    this.showGraph = true;
   }
 
   //npm install angular-google - charts@12
