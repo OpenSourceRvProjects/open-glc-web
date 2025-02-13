@@ -34,7 +34,10 @@ export class HomeComponent implements OnInit {
       next: (data: any) => {
         this.serverData = data;
         //https://stackoverflow.com/questions/19642276/google-charts-trendline-not-showing?rq=1
-        this.serverData.forEach(fe => this.dataForGraph.push([this.serverData.indexOf(fe), fe]));
+        //cannot use the forEach, it seeks the indexOf a value, not the reference. so You need to specify second parameter for array
+        //this.serverData.forEach(fe => this.dataForGraph.push([this.serverData.indexOf(fe), fe]));
+        this.serverData.forEach((fe, index) => this.dataForGraph.push([index, fe]));
+        debugger;
         this.showGraph = true;
       },
       error: (err) => {
