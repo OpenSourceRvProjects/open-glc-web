@@ -25,18 +25,23 @@ export class LineChartComponent implements OnInit {
   public type: ChartType = ChartType.LineChart;
   columnNames = ['Medición', 'Glucosa'];
   options = {
-    curveType: 'function', legend: { position: 'bottom' },
-    //trendlines: { 0: {} }
+    curveType: 'function',
+    legend: { position: 'bottom' },
     trendlines: {
       0: {
-        type: 'linear',    // Trendline type (linear in this case)
-        color: 'red',      // Color of the trendline
-        lineWidth: 2,      // Optional: line width of the trendline
+        type: 'linear',
+        color: 'red',
+        lineWidth: 2,
         labelInLegend: 'Tendencia lineal',
-        showEquation: true, // Show the equation of the trendline on the chart
-        visibleInLegend: true // Show R2 value in the legend
+        showEquation: true,
+        visibleInLegend: true
       },
     },
+    animation: {
+      startup: true,           // Enables animation when the chart starts to load
+      duration: 2000,          // Duration of the animation in milliseconds
+      easing: 'out',           // Easing function for the animation
+    }
   };
 
   width: number = window.innerWidth * 0.9; // 80% of the window width

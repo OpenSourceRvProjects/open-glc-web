@@ -23,13 +23,28 @@ export class BarChartComponent implements OnInit {
   }
 
   //npm install angular-google - charts@12
+  public type: ChartType = ChartType.ColumnChart;
+  columnNames = ['Medición', ''];
   title = 'Niveles de azucar';
-  public type: ChartType = ChartType.Bar;
-  columnNames = ['Medición', 'Glucosa'];
   options = {
+    curveType: 'function',
     legend: { position: 'bottom' },
+    trendlines: {
+      0: {
+        type: 'linear',
+        color: 'red',
+        lineWidth: 2,
+        labelInLegend: 'Tendencia lineal',
+        showEquation: true,
+        visibleInLegend: true
+      },
+    },
+    animation: {
+      startup: true,           // Enables animation when the chart starts to load
+      duration: 2000,          // Duration of the animation in milliseconds
+      easing: 'out',           // Easing function for the animation
+    }
   };
-
   width: number = window.innerWidth * 0.9; // 80% of the window width
   height: number = 400; // You can also dynamically adjust this
 
