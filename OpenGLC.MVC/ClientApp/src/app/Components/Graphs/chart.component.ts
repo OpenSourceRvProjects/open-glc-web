@@ -53,7 +53,10 @@ export class ChartComponent implements OnInit {
         startup: true,           // Enables animation when the chart starts to load
         duration: 2000,          // Duration of the animation in milliseconds
         easing: 'out',           // Easing function for the animation
-      }
+      },
+      responsive: true,
+      //width: 900,  // 600 pixels wide
+      //height: 400, // 400 pixels tall
     };
 
 

@@ -37,6 +37,22 @@
 
   <!-- Google Chart placed below the card -->
   <!--<glc-line-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData"></glc-line-chart>-->
-  <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.LineChart" ></glc-chart>
-  <glc-bar-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData"></glc-bar-chart>
+  <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.LineChart"></glc-chart>
+  <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.ScatterChart"></glc-chart>
+  <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.ColumnChart"></glc-chart>
+
+
+  <!--<div class="row">
+    <div class="col-lg-6">
+      <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.LineChart"></glc-chart>
+
+    </div>
+    <div class="col-lg-6">
+      <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.ScatterChart"></glc-chart>
+
+    </div>
+  </div>
+
+  <glc-chart *ngIf="readyToRenderGraphComponent" [serverData]="serverData" [chartType]="ChartType.ColumnChart"></glc-chart>-->
+
 </div>
