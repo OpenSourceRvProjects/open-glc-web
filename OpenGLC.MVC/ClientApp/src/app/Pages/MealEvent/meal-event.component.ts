@@ -116,6 +116,12 @@ export class MealEventComponent implements OnInit {
       return;
     }
 
+    if (this.glcLevel < 0) {
+      this.processing = false;
+      this.errorMessage = "No se puede registrar una cantidad negativa";
+      return;
+    }
+
     this.newMealEvent.eventDate = this.eventDate;
     this.newMealEvent.glcLevel = this.glcLevel;
     this.newMealEvent.mealType = this.selectedEventType.type;
