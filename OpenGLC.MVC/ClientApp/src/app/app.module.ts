@@ -19,6 +19,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { LineChartComponent } from './Components/Graphs/line-chart.component';
 import { BarChartComponent } from './Components/Graphs/bar-chart.component';
 import { ChartComponent } from './Components/Graphs/chart.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ChartComponent } from './Components/Graphs/chart.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    NgSelectModule
     //RouterModule.forRoot([
     //  { path: '', component: HomeComponent, pathMatch: 'full' },
     //  { path: 'counter', component: CounterComponent },

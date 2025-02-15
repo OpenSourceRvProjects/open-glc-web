@@ -1,8 +1,15 @@
 
+<style>
+
+</style>
+
+
 <div class="card text-center">
   <div class="card-header">
     Datos generales
   </div>
+
+
   <div class="card-body">
     <form class="row g-4">
 
@@ -52,17 +59,24 @@
 
       <div class="col-md-10">
         <label for="inputState" class="form-label">Comida registrada</label>
-        <select class="form-control" name="sel"
-                [(ngModel)]="selectedMealItemToSave"
-                (ngModelChange)="updateMealItemSelected($event)">
+        <!--<select class="form-control" name="sel"
+          [(ngModel)]="selectedMealItemToSave"
+          (ngModelChange)="updateMealItemSelected($event)">
           <option *ngFor="let preexistedItem of preexistedMealList" [ngValue]="preexistedItem">
             {{preexistedItem.name}}
           </option>
-        </select>
+        </select>-->
+        <!--Remove bindValue="id" from ng-select-->
+        <ng-select class="form-control" (ngModelChange)="updateMealItemSelected($event)" name="mealItem" [compareWith]="compareMealItems" [items]="preexistedMealList" bindLabel="name" [(ngModel)]="selectedMealItemToSave">
+        </ng-select>
+
+
       </div>
       <div class="col-md-1">
         <label for="inputZip" class="form-label">Cantidad</label>
-        <input type="number" class="form-control" name="itemQty" [(ngModel)]="selectedMealItemToSave.quantity" id="inputZip">
+        <!--<input type="number" class="form-control" name="itemQty" [(ngModel)]="selectedMealItemToSave?.quantity" id="inputZip">-->
+        <input type="number" class="form-control" name="itemQty"
+               [ngModel]="quantity" (ngModelChange)="updateQuantity($event)" id="inputZip">
       </div>
 
       <div class="col-md-1">
