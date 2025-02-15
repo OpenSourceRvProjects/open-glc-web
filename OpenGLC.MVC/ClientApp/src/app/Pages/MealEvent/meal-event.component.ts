@@ -27,7 +27,10 @@ export class MealEventComponent implements OnInit {
 
 
   preexistedMealList: NewMealItemModelDB[] = [];
-  selectedMealItemToSave: NewMealItemModelDB = <NewMealItemModelDB>{};
+  //selectedMealItemToSave: NewMealItemModelDB = <NewMealItemModelDB>{};
+  selectedMealItemToSave: NewMealItemModelDB | null = null; // Use a union type
+  quantity: number | undefined = undefined; // Initialize as undefined
+
 
   auxiliarPreexistedMealListView: NewMealItemModelDB[] = [];
   mealItemsListToSaveOnServer: ExistingMealItemPair[] = [];
@@ -60,6 +63,7 @@ export class MealEventComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.quantity = 1;
     this.eventMealService.getMealEventTypes().subscribe({
       next: (data: any) => {
         debugger;
@@ -173,18 +177,46 @@ export class MealEventComponent implements OnInit {
 
   }
 
-  updateMealItemSelected($event: any) {
-    debugger;
-    this.selectedMealItemToSave = $event;
+  //updateMealItemSelected($event: any) {
+  //  debugger;
+  //  if ($event == null) {
+  //    this.selectedMealItemToSave = this.preexistedMealList[0];
+  //    return;
+  //  }
 
+  //  this.selectedMealItemToSave = $event;
+
+  //}
+
+
+  updateMealItemSelected($event: any) {
+    if ($event == null) {
+      this.selectedMealItemToSave = null;
+      this.quantity = 1; // Reset quantity
+      return;
+    }
+
+    this.selectedMealItemToSave = $event;
+    this.quantity = $event.quantity; // Initialize quantity with selected value
+  }
+
+  updateQuantity(event: any) {
+    const value = Number(event.target.value);
+    this.quantity = isNaN(value) ? undefined : value;
+    if (this.selectedMealItemToSave) {
+      this.selectedMealItemToSave.quantity = this.quantity!;
+    }
   }
 
   addToAuxiliarListView() {
     debugger;
-    this.auxiliarPreexistedMealListView.push(this.selectedMealItemToSave);
+    this.auxiliarPreexistedMealListView.push(this.selectedMealItemToSave!);
     this.selectedMealItemToSave = <NewMealItemModelDB>{};
     this.selectedMealItemToSave = this.preexistedMealList[0];
 
+  }
+  compareMealItems(item1: any, item2: any): boolean {
+    return item1 && item2 ? item1.id === item2.id : item1 === item2;
   }
 
   deletePreexistedAuxiliarList(index: number) {

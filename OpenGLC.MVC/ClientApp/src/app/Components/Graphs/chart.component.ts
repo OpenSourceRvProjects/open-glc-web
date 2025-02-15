@@ -41,7 +41,9 @@ export class ChartComponent implements OnInit {
       legend: { position: 'bottom' },
       trendlines: {
         0: {
-          type: 'linear',
+          //just the same as linear
+          type: 'polynomial',
+          degree: 1,
           color: 'red',
           lineWidth: 2,
           labelInLegend: 'Tendencia lineal',
