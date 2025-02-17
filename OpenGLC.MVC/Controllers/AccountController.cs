@@ -33,6 +33,16 @@ namespace OpenGLC.MVC.Controllers
 			return Ok(result);
 		}
 
+
+		[HttpGet]
+		[Route("getStatus")]
+		[AutomaticExceptionHandler]
+		public async Task<IActionResult> getStatus()
+		{
+			var status = await _userSC.GetServerStatus();
+			return Ok(status);
+		}
+
 		[HttpGet]
 		[Route("userData")]
 		[Authorize]

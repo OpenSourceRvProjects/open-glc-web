@@ -7,6 +7,6 @@ namespace OpenGLC.Infrastructure.Services
 	{
 		public Task<EncryptorResultModel> RegisterUser(NewRegisterModel newRegister);
 		public Task<TokenResultModel> Login(string userName, string password, bool? tokenForDeleteAction = false);
-
+		public Task<Object> GetServerStatus();
 	}
 }

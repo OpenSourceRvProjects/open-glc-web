@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using OpenGLC.Data.Entities;
 using OpenGLC.Infrastructure.Interfaces;
 using OpenGLC.Infrastructure.Services;
@@ -31,6 +32,19 @@ namespace OpenGLC.Backend.Services
 			_dbContext = dbContext;
 			_httpContextAccessor = httpContextAccessor;
 
+		}
+
+		public async Task<object> GetServerStatus()
+		{
+			try
+			{
+				var regsNumbs = await _dbContext.Users.CountAsync();
+				return new { connection = regsNumbs >= 0 };
+			}
+			catch (Exception ex)
+			{
+				return new { connection = false};
+			}
 		}
 
 		public async Task<TokenResultModel> Login(string userName, string password, bool? tokenForDeleteAction = false)
