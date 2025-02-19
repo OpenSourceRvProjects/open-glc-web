@@ -48,7 +48,6 @@ export class MealEventComponent implements OnInit {
   processing: boolean = false;
 
   constructor(private eventMealService: EventMealsService, private router: Router) {
-    debugger;
     var today = new Date();
     var month = today.getMonth();
     var year = today.getFullYear();
@@ -66,26 +65,22 @@ export class MealEventComponent implements OnInit {
     this.quantity = 1;
     this.eventMealService.getMealEventTypes().subscribe({
       next: (data: any) => {
-        debugger;
         this.mealEventTypes = data;
         this.selectedEventType = this.mealEventTypes[0];
 
       },
       error: (err) => {
-        debugger;
         alert("Ha ocurrido un error -->" + err.error.errorMessages[0]);
       },
     });
 
     this.eventMealService.getMealItems(0, 1000, "").subscribe({
       next: (data: any) => {
-        debugger;
         this.preexistedMealList = data.pagedList;
         this.selectedMealItemToSave = this.preexistedMealList[0];
 
       },
       error: (err) => {
-        debugger;
         alert("Ha ocurrido un error -->" + err.error.errorMessages[0]);
       },
     });
@@ -93,7 +88,6 @@ export class MealEventComponent implements OnInit {
 
   addToNewMealList() {
 
-    debugger;
     if (this.newMealItem.mealName.trim() === "")
       return;
 
@@ -112,7 +106,6 @@ export class MealEventComponent implements OnInit {
     this.processing = true;
     this.errorMessage = ""
 
-    debugger;
     if (this.glcLevel == null || this.eventDate == null || !Date.parse(this.eventDate.toString())) {
 
       this.processing = false;
@@ -144,7 +137,6 @@ export class MealEventComponent implements OnInit {
 
     if (this.auxiliarPreexistedMealListView.length > 0) {
       this.auxiliarPreexistedMealListView.forEach(f => {
-        debugger;
         var newPreexistedItemToSave = <ExistingMealItemPair>{};
         newPreexistedItemToSave.iD = f.id,
           newPreexistedItemToSave.quantity = f.quantity,
@@ -159,12 +151,10 @@ export class MealEventComponent implements OnInit {
     // alert("Datos a guardar: Glucosa " + this.newMealEvent.glcLevel + ", Fecha: " + this.newMealEvent.eventDate + ", TIpo comida: " + this.newMealEvent.mealType)
     this.eventMealService.addMealEvent(this.newMealEvent).subscribe({
       next: (data: any) => {
-        debugger;
         this.processing = false;
         this.router.navigate(['/events']);
       },
       error: (err) => {
-        debugger;
         alert("Ha ocurrido un error -->" + err.error.errorMessages[0]);
         this.processing = false;
       },
@@ -172,7 +162,6 @@ export class MealEventComponent implements OnInit {
   }
 
   updateMealType($event: any) {
-    debugger;
     this.selectedEventType = $event;
 
   }
@@ -201,7 +190,7 @@ export class MealEventComponent implements OnInit {
   }
 
   updateQuantity(event: any) {
-    const value = Number(event.target.value);
+    const value = Number(event);
     this.quantity = isNaN(value) ? undefined : value;
     if (this.selectedMealItemToSave) {
       this.selectedMealItemToSave.quantity = this.quantity!;
@@ -209,7 +198,6 @@ export class MealEventComponent implements OnInit {
   }
 
   addToAuxiliarListView() {
-    debugger;
     this.auxiliarPreexistedMealListView.push(this.selectedMealItemToSave!);
     this.selectedMealItemToSave = <NewMealItemModelDB>{};
     this.selectedMealItemToSave = this.preexistedMealList[0];
