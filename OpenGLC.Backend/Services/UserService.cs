@@ -18,11 +18,12 @@ namespace OpenGLC.Backend.Services
 		private readonly DecryptorEngine _decryptor;
 		private readonly TokenHandlerEngine _tokenHandler;
 		private readonly IUserRepository _userRepository;
+		private readonly IPasswordResetRequestRepository _passwordResetRequestRepository;
 		private readonly OpenglclevelContext _dbContext;
 		private readonly IHttpContextAccessor _httpContextAccessor;
 		public UserService(ISecurityKeys securityKeysValues, OpenglclevelContext dbContext,
 			EncryptorEngine encryptor, IUserRepository userRepository, DecryptorEngine decryptor,
-			TokenHandlerEngine tokenHandler, IHttpContextAccessor httpContextAccessor)
+			TokenHandlerEngine tokenHandler, IHttpContextAccessor httpContextAccessor, IPasswordResetRequestRepository passwordResetRequestRepository)
 		{
 			_securityKeysValues = securityKeysValues;
 			_encryptor = encryptor;
@@ -31,7 +32,58 @@ namespace OpenGLC.Backend.Services
 			_userRepository = userRepository;
 			_dbContext = dbContext;
 			_httpContextAccessor = httpContextAccessor;
+			_passwordResetRequestRepository = passwordResetRequestRepository;
+		}
 
+		public async Task CreateResetPasswordRequest(string emailOrUserName)
+		{
+			var user = _userRepository.FindByExpresion(f => f.Email == emailOrUserName);
+			if ((await user.CountAsync()) == 0)
+			{
+				user = _userRepository.FindByExpresion(f => f.UserName == emailOrUserName);
+			}
+
+			if ((await user.CountAsync()) == 0)
+				return;
+
+			var userList = await user.ToListAsync();
+			List<PasswordResetRequest> requests = new List<PasswordResetRequest>();
+			TimeZoneInfo cstZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
+			DateTime utcNow = DateTime.UtcNow;
+			DateTime cstTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, cstZone);
+
+			foreach (var u in userList)
+			{
+				ChangeAlreadyExistingChangePasswordRequest(u);
+				var req = new PasswordResetRequest()
+				{
+					Id = Guid.NewGuid(),
+					UserId = u.Id,
+					CreationDate = cstTime,
+					Email = u.Email,
+					ExpirationDate = cstTime.AddDays(1),
+				};
+
+				requests.Add(req);
+			}
+
+			//TODO: Send emails
+			await _passwordResetRequestRepository.AddRangeAsync(requests);
+			_dbContext.SaveChanges();
+		}
+
+		private void ChangeAlreadyExistingChangePasswordRequest(User? u)
+		{
+			var preexistedActiveRequests = _passwordResetRequestRepository
+								.FindByExpresion(f => f.UserId == u.Id && !f.Status);
+			if (preexistedActiveRequests != null)
+			{
+				foreach (var pear in preexistedActiveRequests)
+				{
+					pear.Status = true;
+					_passwordResetRequestRepository.UpdateAsync(pear);
+				}
+			}
 		}
 
 		public async Task<object> GetServerStatus()
@@ -43,7 +95,7 @@ namespace OpenGLC.Backend.Services
 			}
 			catch (Exception ex)
 			{
-				return new { connection = false};
+				return new { connection = false };
 			}
 		}
 

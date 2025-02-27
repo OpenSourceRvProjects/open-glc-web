@@ -52,6 +52,14 @@ namespace OpenGLC.MVC.Controllers
 			return Ok(result);
 		}
 
+		[HttpGet]
+		[Route("passwordChangeRequest")]
+		public async Task<IActionResult> PasswordChangeRequest(string emailOrUserName)
+		{
+			await _userSC.CreateResetPasswordRequest(emailOrUserName);
+			return Ok();
+		}
+
 
 		// POST api/<AccountController>
 		[HttpPost]

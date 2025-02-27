@@ -83,6 +83,7 @@ namespace OpenGLC.MVC
 			services.AddTransient<IMealItemRepository, MealItemRepository>();
 			services.AddTransient<IMealEventRepository, MealEventRepository>();
 			services.AddTransient<IMealEventItemsRepository, MealEventItemsRepository>();
+			services.AddTransient<IPasswordResetRequestRepository, PasswordResetRequestRepository>();
 
 			services.AddTransient<EncryptorEngine>();
 			services.AddTransient<DecryptorEngine>();
