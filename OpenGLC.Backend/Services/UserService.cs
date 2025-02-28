@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using OpenGLC.Data.Entities;
+using OpenGLC.Emailer;
 using OpenGLC.Infrastructure.Interfaces;
 using OpenGLC.Infrastructure.Services;
 using OpenGLC.Models.Accounts;
@@ -19,11 +20,13 @@ namespace OpenGLC.Backend.Services
 		private readonly TokenHandlerEngine _tokenHandler;
 		private readonly IUserRepository _userRepository;
 		private readonly IPasswordResetRequestRepository _passwordResetRequestRepository;
+		private readonly IEmailSender _emailSender;
 		private readonly OpenglclevelContext _dbContext;
 		private readonly IHttpContextAccessor _httpContextAccessor;
 		public UserService(ISecurityKeys securityKeysValues, OpenglclevelContext dbContext,
 			EncryptorEngine encryptor, IUserRepository userRepository, DecryptorEngine decryptor,
-			TokenHandlerEngine tokenHandler, IHttpContextAccessor httpContextAccessor, IPasswordResetRequestRepository passwordResetRequestRepository)
+			TokenHandlerEngine tokenHandler, IHttpContextAccessor httpContextAccessor, 
+			IPasswordResetRequestRepository passwordResetRequestRepository, IEmailSender emailSender)
 		{
 			_securityKeysValues = securityKeysValues;
 			_encryptor = encryptor;
@@ -33,6 +36,7 @@ namespace OpenGLC.Backend.Services
 			_dbContext = dbContext;
 			_httpContextAccessor = httpContextAccessor;
 			_passwordResetRequestRepository = passwordResetRequestRepository;
+			_emailSender = emailSender;
 		}
 
 		public async Task CreateResetPasswordRequest(string emailOrUserName)
@@ -52,6 +56,10 @@ namespace OpenGLC.Backend.Services
 			DateTime utcNow = DateTime.UtcNow;
 			DateTime cstTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, cstZone);
 
+			var emailContent = "";
+			emailContent += "<h2 style=\"text-align:center\">Reestablece tu contraseña</h2><br>";
+			var request = _httpContextAccessor.HttpContext.Request;
+
 			foreach (var u in userList)
 			{
 				ChangeAlreadyExistingChangePasswordRequest(u);
@@ -64,13 +72,28 @@ namespace OpenGLC.Backend.Services
 					ExpirationDate = cstTime.AddDays(1),
 				};
 
-				requests.Add(req);
+				await _passwordResetRequestRepository.AddAsync(req);
+				_dbContext.SaveChanges();
+
+				var currentBaseURL = $"{request.Scheme}://{request.Host}/resetPassword?id=" + req.Id;
+				emailContent += $"<table style='border-collapse: collapse;width: 100%;'>" +
+					$"<tr>" +
+					$"<th style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>Usuario</th> " +
+					$"<th style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>Link</th>" +
+					$"</tr>" +
+					$"<tr>" +
+					$"<td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>" + u.UserName + "</td>" +
+					$"<td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'><a href='" + currentBaseURL + "'>Link de recuperación: " + req.Id.ToString() + "</a></td>" +
+					$"</tr>" +
+					$"</table>";
+				var message = new MessageModel(new string[] { u.Email }, "Recupera tu password de OpenGLC", emailContent, null, u.FirstName, "OpenGLC App") ;
+				_emailSender.SendEmail(message, u, u.Id);
+
 			}
 
-			//TODO: Send emails
-			await _passwordResetRequestRepository.AddRangeAsync(requests);
-			_dbContext.SaveChanges();
 		}
+
+	
 
 		private void ChangeAlreadyExistingChangePasswordRequest(User? u)
 		{

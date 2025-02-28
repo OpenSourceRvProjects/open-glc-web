@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OpenGLC.Data.Entities;
 using AspNetCoreRateLimit;
 using System.Threading.RateLimiting;
+using OpenGLC.Models.Accounts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -70,6 +71,10 @@ builder.Services.Configure<IpRateLimitOptions>(options =>
 });
 
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+var emailConfig = builder.Configuration
+		.GetSection("EmailConfiguration")
+		.Get<EmailConfigurationModel>();
+builder.Services.AddSingleton(emailConfig);
 
 var app = builder.Build();
 

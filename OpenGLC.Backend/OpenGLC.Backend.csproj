@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OpenGLC.Emailer\OpenGLC.Emailer.csproj" />
     <ProjectReference Include="..\OpenGLC.Infrastructure\OpenGLC.Infrastructure.csproj" />
     <ProjectReference Include="..\OpenGLC.Security\OpenGLC.Security.csproj" />
   </ItemGroup>
