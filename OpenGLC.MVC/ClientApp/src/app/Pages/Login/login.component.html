@@ -21,6 +21,9 @@
     <div *ngIf="!processing" class="form-group; text-center">
       <a (click)="goToRegister()">Crear cuenta</a>
     </div>
+    <div *ngIf="!processing" class="form-group; text-center">
+      <a (click)="goToForgotPassword()">¿Olvidaste tu contraseña? Da click aqui</a>
+    </div>
 
     <div *ngIf="processing" class="form-group; text-center">
       <div class="spinner-border text-primary" role="status">

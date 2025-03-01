@@ -20,6 +20,10 @@ export class AccountService {
     return this.httpClient.get(this.baseUrl + requestQry, { withCredentials: true })
   }
 
+  sendPasswordRequest(userNameOrPassword : string){
+    return this.httpClient.get(this.baseUrl + "api/Account/passwordChangeRequest?emailOrUserName=" + userNameOrPassword);
+  }
+
   register(newUser: NewRegisterModel) {
     debugger;
     return this.httpClient.post(this.baseUrl + "api/Account/register", newUser);

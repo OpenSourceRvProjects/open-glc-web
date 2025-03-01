@@ -12,6 +12,7 @@ const PROXY_CONFIG = [
       "/api/MealEvents/userEventMetrics",
       "/api/MealEvents/lastThreeMonthsLevels",
       "/api/MealEvents/getEventMealTypes",
+      "/api/Account/passwordChangeRequest",
       "/api/MealEvents",
       "/api/MealItems",
       "/api/MealEvents"
