@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using OpenGLC.Data.Entities;
+using OpenGLC.Emailer;
 using OpenGLC.Infrastructure.Interfaces;
 using OpenGLC.Infrastructure.Services;
 using OpenGLC.Models.Accounts;
@@ -18,11 +19,14 @@ namespace OpenGLC.Backend.Services
 		private readonly DecryptorEngine _decryptor;
 		private readonly TokenHandlerEngine _tokenHandler;
 		private readonly IUserRepository _userRepository;
+		private readonly IPasswordResetRequestRepository _passwordResetRequestRepository;
+		private readonly IEmailSender _emailSender;
 		private readonly OpenglclevelContext _dbContext;
 		private readonly IHttpContextAccessor _httpContextAccessor;
 		public UserService(ISecurityKeys securityKeysValues, OpenglclevelContext dbContext,
 			EncryptorEngine encryptor, IUserRepository userRepository, DecryptorEngine decryptor,
-			TokenHandlerEngine tokenHandler, IHttpContextAccessor httpContextAccessor)
+			TokenHandlerEngine tokenHandler, IHttpContextAccessor httpContextAccessor, 
+			IPasswordResetRequestRepository passwordResetRequestRepository, IEmailSender emailSender)
 		{
 			_securityKeysValues = securityKeysValues;
 			_encryptor = encryptor;
@@ -31,7 +35,78 @@ namespace OpenGLC.Backend.Services
 			_userRepository = userRepository;
 			_dbContext = dbContext;
 			_httpContextAccessor = httpContextAccessor;
+			_passwordResetRequestRepository = passwordResetRequestRepository;
+			_emailSender = emailSender;
+		}
 
+		public async Task CreateResetPasswordRequest(string emailOrUserName)
+		{
+			var user = _userRepository.FindByExpresion(f => f.Email == emailOrUserName);
+			if ((await user.CountAsync()) == 0)
+			{
+				user = _userRepository.FindByExpresion(f => f.UserName == emailOrUserName);
+			}
+
+			if ((await user.CountAsync()) == 0)
+				return;
+
+			var userList = await user.ToListAsync();
+			List<PasswordResetRequest> requests = new List<PasswordResetRequest>();
+			TimeZoneInfo cstZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
+			DateTime utcNow = DateTime.UtcNow;
+			DateTime cstTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow, cstZone);
+
+			var emailContent = "";
+			emailContent += "<h2 style=\"text-align:center\">Reestablece tu contraseña</h2><br>";
+			var request = _httpContextAccessor.HttpContext.Request;
+
+			foreach (var u in userList)
+			{
+				ChangeAlreadyExistingChangePasswordRequest(u);
+				var req = new PasswordResetRequest()
+				{
+					Id = Guid.NewGuid(),
+					UserId = u.Id,
+					CreationDate = cstTime,
+					Email = u.Email,
+					ExpirationDate = cstTime.AddDays(1),
+				};
+
+				await _passwordResetRequestRepository.AddAsync(req);
+				_dbContext.SaveChanges();
+
+				var currentBaseURL = $"{request.Scheme}://{request.Host}/resetPassword?id=" + req.Id;
+				emailContent += $"<table style='border-collapse: collapse;width: 100%;'>" +
+					$"<tr>" +
+					$"<th style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>Usuario</th> " +
+					$"<th style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>Link</th>" +
+					$"</tr>" +
+					$"<tr>" +
+					$"<td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'>" + u.UserName + "</td>" +
+					$"<td style='border: 1px solid #dddddd;text-align: left;padding: 8px;'><a href='" + currentBaseURL + "'>Link de recuperación: " + req.Id.ToString() + "</a></td>" +
+					$"</tr>" +
+					$"</table>";
+				var message = new MessageModel(new string[] { u.Email }, "Recupera tu password de OpenGLC", emailContent, null, u.FirstName, "OpenGLC App") ;
+				_emailSender.SendEmail(message, u, u.Id);
+
+			}
+
+		}
+
+	
+
+		private void ChangeAlreadyExistingChangePasswordRequest(User? u)
+		{
+			var preexistedActiveRequests = _passwordResetRequestRepository
+								.FindByExpresion(f => f.UserId == u.Id && !f.Status);
+			if (preexistedActiveRequests != null)
+			{
+				foreach (var pear in preexistedActiveRequests)
+				{
+					pear.Status = true;
+					_passwordResetRequestRepository.UpdateAsync(pear);
+				}
+			}
 		}
 
 		public async Task<object> GetServerStatus()
@@ -43,7 +118,7 @@ namespace OpenGLC.Backend.Services
 			}
 			catch (Exception ex)
 			{
-				return new { connection = false};
+				return new { connection = false };
 			}
 		}
 

@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using OpenGLC.Backend.Services;
+using OpenGLC.Emailer;
 using OpenGLC.Infrastructure;
 using OpenGLC.Infrastructure.Interfaces;
 using OpenGLC.Infrastructure.Services;
@@ -78,11 +79,13 @@ namespace OpenGLC.MVC
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<IMealItemService, MealItemService>();
 			services.AddTransient<IMealEventService, MealEventService>();
+			services.AddTransient<IEmailSender, EmailSender>();
 
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<IMealItemRepository, MealItemRepository>();
 			services.AddTransient<IMealEventRepository, MealEventRepository>();
 			services.AddTransient<IMealEventItemsRepository, MealEventItemsRepository>();
+			services.AddTransient<IPasswordResetRequestRepository, PasswordResetRequestRepository>();
 
 			services.AddTransient<EncryptorEngine>();
 			services.AddTransient<DecryptorEngine>();

@@ -24,4 +24,6 @@ public partial class User
     public virtual ICollection<MealEvent> MealEvents { get; set; } = new List<MealEvent>();
 
     public virtual ICollection<MealItem> MealItems { get; set; } = new List<MealItem>();
+
+    public virtual ICollection<PasswordResetRequest> PasswordResetRequests { get; set; } = new List<PasswordResetRequest>();
 }

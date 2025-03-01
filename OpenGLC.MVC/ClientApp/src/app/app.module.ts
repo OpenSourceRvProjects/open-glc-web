@@ -20,6 +20,7 @@ import { LineChartComponent } from './Components/Graphs/line-chart.component';
 import { BarChartComponent } from './Components/Graphs/bar-chart.component';
 import { ChartComponent } from './Components/Graphs/chart.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ForgotPasswordComponent } from './Pages/ForgotPassword/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     EventsComponent,
     LineChartComponent,
     BarChartComponent,
-    ChartComponent
+    ChartComponent, 
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

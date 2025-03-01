@@ -32,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OpenGLC.Backend\OpenGLC.Backend.csproj" />
     <ProjectReference Include="..\OpenGLC.Data\OpenGLC.Data.csproj" />
+    <ProjectReference Include="..\OpenGLC.Emailer\OpenGLC.Emailer.csproj" />
     <ProjectReference Include="..\OpenGLC.Infrastructure\OpenGLC.Infrastructure.csproj" />
     <ProjectReference Include="..\OpenGLC.Models\OpenGLC.Models.csproj" />
     <ProjectReference Include="..\OpenGLC.Security\OpenGLC.Security.csproj" />
