@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.MVC", "OpenGLC.MVC.csproj", "{186FD051-F01C-4814-B8A8-EDE8E2D61D25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.MVC", "OpenGLC.MVC\OpenGLC.MVC.csproj", "{186FD051-F01C-4814-B8A8-EDE8E2D61D25}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Backend", "..\OpenGLC.Backend\OpenGLC.Backend.csproj", "{E87186AE-FE3A-4F66-803A-8B5200DC575C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Backend", "OpenGLC.Backend\OpenGLC.Backend.csproj", "{E87186AE-FE3A-4F66-803A-8B5200DC575C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Models", "..\OpenGLC.Models\OpenGLC.Models.csproj", "{870DD708-73C7-4DA6-9688-FED44412AE22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Models", "OpenGLC.Models\OpenGLC.Models.csproj", "{870DD708-73C7-4DA6-9688-FED44412AE22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Data", "..\OpenGLC.Data\OpenGLC.Data.csproj", "{140D36F7-DEF6-4C91-B1DD-F264CC9A176B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Data", "OpenGLC.Data\OpenGLC.Data.csproj", "{140D36F7-DEF6-4C91-B1DD-F264CC9A176B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Infrastructure", "..\OpenGLC.Infrastructure\OpenGLC.Infrastructure.csproj", "{4D1DD575-2980-4C84-B6D7-B6D344DFA453}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Infrastructure", "OpenGLC.Infrastructure\OpenGLC.Infrastructure.csproj", "{4D1DD575-2980-4C84-B6D7-B6D344DFA453}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Security", "..\OpenGLC.Security\OpenGLC.Security.csproj", "{74D43E9E-15D0-48D2-85F2-1367863D4E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenGLC.Security", "OpenGLC.Security\OpenGLC.Security.csproj", "{74D43E9E-15D0-48D2-85F2-1367863D4E91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLC.Emailer", "..\OpenGLC.Emailer\OpenGLC.Emailer.csproj", "{9C8BBD8E-57DB-4F43-A239-01A4693AB55F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLC.Emailer", "OpenGLC.Emailer\OpenGLC.Emailer.csproj", "{9C8BBD8E-57DB-4F43-A239-01A4693AB55F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
