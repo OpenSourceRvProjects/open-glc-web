@@ -37,3 +37,9 @@
 /OpenGLC.Security/bin/Debug/net8.0
 /OpenGLC.Security/obj/Debug/net8.0
 /OpenGLC.Security/obj
+/OpenGLC.Data/bin/Release/net8.0
+/OpenGLC.Emailer/bin/Release/net8.0
+/OpenGLC.Infrastructure/bin/Release/net8.0
+/OpenGLC.Models/bin/Release/net8.0
+/OpenGLC.MVC/ClientApp/.angular/cache/15.2.7/angular-webpack
+/OpenGLC.Security/bin/Release/net8.0
