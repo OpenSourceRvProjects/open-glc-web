@@ -15,7 +15,9 @@ const PROXY_CONFIG = [
       "/api/Account/passwordChangeRequest",
       "/api/MealEvents",
       "/api/MealItems",
-      "/api/MealEvents"
+      "/api/MealEvents",
+      "/api/Account/getGoogleClientID",
+      "/api/Account/loginOrRegisterGoogleAuth"
 
    ],
     proxyTimeout: 10000,

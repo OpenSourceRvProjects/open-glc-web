@@ -8,7 +8,12 @@ import { NewRegisterModel } from '../Models/NewRegisterModel';
 })
 export class AccountService {
 
-  constructor(private httpClient: HttpClient, @Inject('BASE_URL')  private baseUrl: string) { }
+  constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+
+  googleLogin(credential: any) {
+    return this.httpClient.post(this.baseUrl + 'api/Account/loginOrRegisterGoogleAuth', { idToken: credential });
+  }
+
 
   login(userName: string, password: string, generateDeleteToken: boolean = false) {
     debugger;
@@ -45,6 +50,10 @@ export class AccountService {
 
   isNullToken(): boolean {
     return this.token === "";
+  }
+
+  getGoogleClientID() {
+    return this.httpClient.get(this.baseUrl + `api/Account/getGoogleClientID`);
   }
 
 }

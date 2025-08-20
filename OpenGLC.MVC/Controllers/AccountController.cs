@@ -15,12 +15,15 @@ namespace OpenGLC.MVC.Controllers
 		private readonly IUserService _userSC;
 		private readonly ISecurityKeys _securityKeysValues;
 		private readonly IHttpContextAccessor _httpContext;
+        private readonly IConfiguration _configuration;
 
-		public AccountController(IUserService userSC, ISecurityKeys securityKeys, IHttpContextAccessor httpContext)
+
+        public AccountController(IUserService userSC, ISecurityKeys securityKeys, IHttpContextAccessor httpContext, IConfiguration configuration)
 		{
 			_userSC = userSC;
 			_securityKeysValues = securityKeys;
 			_httpContext = httpContext;
+			_configuration = configuration;
 		}
 
 		[HttpGet]
@@ -72,5 +75,72 @@ namespace OpenGLC.MVC.Controllers
 		}
 
 
-	}
+        [HttpGet]
+        [Route("getGoogleClientID")]
+        public IActionResult GetGoogleClientID()
+        {
+            var clientId = _configuration["security:googleClientID"];
+            return Ok(new { googleClientID = clientId });
+        }
+
+        [HttpPost]
+        [Route("loginOrRegisterGoogleAuth")]
+        public async Task<IActionResult> registerOrLoginWithGoogle(GoogleAuthRequest request)
+        {
+            var googleUser = await _userSC.VerifyGoogleToken(request.IdToken);
+            if (googleUser == null)
+                return Unauthorized("Invalid Google token");
+
+			var isRegistered = await _userSC.GetUserByUserName(googleUser.Email) != null;
+
+			if (isRegistered) {
+                var result = await _userSC.ExternalProviderLogin(userName: googleUser.Email);
+                _httpContext.HttpContext.Session.SetString("userID", result.UserID.ToString());
+                return Ok(result);
+
+            }
+            else
+            {
+
+                string fullName = googleUser.DisplayName ?? googleUser.Name ?? "";
+                string[] nameParts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                string firstName = nameParts.Length > 0 ? nameParts[0] : "";
+                string lastName1 = nameParts.Length > 1 ? nameParts[1] : "";
+
+                var response = await _userSC.RegisterUser(new NewRegisterModel
+                {
+                    Email = googleUser.Email,
+                    Name = firstName,
+                    FirstName = lastName1,
+                    UserName = googleUser.Email,
+                });
+
+				var result = _userSC.ExternalProviderLogin(userName: googleUser.Email);
+                _httpContext.HttpContext.Session.SetString("userID", googleUser.Email.ToString());
+                return Ok(result);
+
+
+            }
+
+            //string fullName = googleUser.DisplayName ?? googleUser.Name ?? "";
+            //string[] nameParts = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            //string firstName = nameParts.Length > 0 ? nameParts[0] : "";
+            //string lastName1 = nameParts.Length > 1 ? nameParts[1] : "";
+
+            //var response = await _accountService.RegisterUserAccount(new RegisterModel()
+            //{
+            //    Email = googleUser.Email,
+            //    Name = firstName,
+            //    LastName1 = lastName1,
+            //    LastName2 = "",
+            //    UserName = googleUser.Email,
+            //});
+
+
+        }
+
+
+    }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AccountService } from '../../Services/AccountService';
 
+declare const google: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,13 +20,50 @@ export class LoginComponent implements OnInit {
   environmentMessage = "";
 
   ngOnInit(): void {
- 
-      this.environmentMessage = ""
+
+    this.environmentMessage = ""
+
+
+    this.accountService.getGoogleClientID().
+      subscribe({
+        next: (data: any) => {
+          debugger;
+          google.accounts.id.initialize({
+            client_id: data.googleClientID,
+            callback: this.handleGoogleCredentialResponse.bind(this)
+          });
+
+          google.accounts.id.renderButton(
+            document.getElementById('google-signin-button'),
+            { theme: 'outline', size: 'large' }
+          );
+        }
+      })
 
     debugger;
     if (this.accountService.getUserData() !== null)
       this.router.navigate(['/']);
 
+  }
+
+  handleGoogleCredentialResponse(response: any) {
+    debugger;
+    this.processing = true;
+    const credential = response.credential;
+    this.accountService.googleLogin(credential).subscribe({
+      next: (data :any) => {
+        debugger;
+        data.userName = this.userName;
+        localStorage.setItem("userData", JSON.stringify(data));
+        this.processing = false;
+        this.router.navigate(['/']);
+
+      }, error: (err) => {
+        debugger;
+        alert("Error " + err.error)
+        this.processing = false;
+      }
+    })
   }
 
   login() {
@@ -52,7 +90,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
-  goToForgotPassword(){
+  goToForgotPassword() {
     this.router.navigate(['passwordRequest']);
   }
 
