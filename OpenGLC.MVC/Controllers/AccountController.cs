@@ -116,8 +116,8 @@ namespace OpenGLC.MVC.Controllers
                     UserName = googleUser.Email,
                 });
 
-				var result = _userSC.ExternalProviderLogin(userName: googleUser.Email);
-                _httpContext.HttpContext.Session.SetString("userID", googleUser.Email.ToString());
+				var result = await _userSC.ExternalProviderLogin(userName: googleUser.Email);
+                _httpContext.HttpContext.Session.SetString("userID", result.UserID.ToString());
                 return Ok(result);
 
 
