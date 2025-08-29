@@ -14,5 +14,7 @@ namespace OpenGLC.Models.Responses
 		public decimal GlcAverage { get; set; }
 		public string Name { get; set; }
         public decimal Mean { get; set; }
+        public string RandomPhrase { get; set; }
+        public string PhraseAuthor { get; set; }
     }
 }

@@ -30,6 +30,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="phrases.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OpenGLC.Backend\OpenGLC.Backend.csproj" />
     <ProjectReference Include="..\OpenGLC.Data\OpenGLC.Data.csproj" />
     <ProjectReference Include="..\OpenGLC.Emailer\OpenGLC.Emailer.csproj" />
@@ -42,6 +46,12 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\Security\" />
     <Folder Include="ClientApp\src\app\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="phrases.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

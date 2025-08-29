@@ -5,11 +5,13 @@ using OpenGLC.Infrastructure.Interfaces;
 using OpenGLC.Infrastructure.Services;
 using OpenGLC.Models.API;
 using OpenGLC.Models.Exceptions;
+using OpenGLC.Models.InternalModels;
 using OpenGLC.Models.MealEventItems;
 using OpenGLC.Models.MealEvents;
 using OpenGLC.Models.Pagination;
 using OpenGLC.Models.Responses;
 using System.Text;
+using System.Text.Json;
 
 namespace OpenGLC.Backend.Services
 {
@@ -166,6 +168,16 @@ namespace OpenGLC.Backend.Services
 				var mealEvents = _eventRepo.FindByExpresion(w => w.UserId == userID);
 				var average = mealEvents.Count() > 0 ? (decimal)await mealEvents.AverageAsync(a => a.GlcLevel) : 0m;
 				var mean = mealEvents.Count() > 0 ? (decimal)MedianCalculation(mealEvents.Select(s => s.GlcLevel).ToArray()) : 0m;
+
+				var text = await File.ReadAllTextAsync("phrases.json");
+                var model = JsonSerializer.Deserialize<PhraseModel>(text);
+
+                var random = new Random();
+                int index = random.Next(model.frases_motivacionales.Count); // random index
+                var randomPhrase = model.frases_motivacionales[index];
+
+				result.RandomPhrase = randomPhrase.frase;
+				result.PhraseAuthor = randomPhrase.autor;
 
                 result.GlcAverage = average;
 				var lastEvent = await mealEvents.OrderByDescending(o => o.CreationDate).FirstOrDefaultAsync();
