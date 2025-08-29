@@ -28,8 +28,8 @@
         </div>
 
         <div class="stats">
-          <h6 class="mb-0">Último registro</h6>
-          <span>{{userData.lastEventRegistered | date: 'dd/MM/yyyy'}}</span>
+          <h6 class="mb-0">Mediana</h6>
+          <span>{{userData.mean | number : '1.2-2' }}</span>
         </div>
       </div>
     </div>

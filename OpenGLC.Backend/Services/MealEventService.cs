@@ -140,7 +140,21 @@ namespace OpenGLC.Backend.Services
 			return response;
 		}
 
-		public async Task<UserMetricsModel> GetEventsGlcAverage()
+        static decimal MedianCalculation(int[] numeros)
+        {
+            if (numeros == null || numeros.Length == 0)
+                throw new ArgumentException("La colección no puede estar vacía.");
+
+            var ordenados = numeros.OrderBy(n => n).ToArray();
+            int n = ordenados.Length;
+            int mitad = n / 2;
+
+            return n % 2 == 0
+                ? (ordenados[mitad - 1] + ordenados[mitad]) / 2.0m
+                : ordenados[mitad];
+        }
+
+        public async Task<UserMetricsModel> GetEventsGlcAverage()
 		{
 
 			var result = new UserMetricsModel();
@@ -151,14 +165,17 @@ namespace OpenGLC.Backend.Services
 				var userID = Guid.Parse(_httpContextAccessor.HttpContext.Session.GetString("userID"));
 				var mealEvents = _eventRepo.FindByExpresion(w => w.UserId == userID);
 				var average = mealEvents.Count() > 0 ? (decimal)await mealEvents.AverageAsync(a => a.GlcLevel) : 0m;
+				var mean = mealEvents.Count() > 0 ? (decimal)MedianCalculation(mealEvents.Select(s => s.GlcLevel).ToArray()) : 0m;
 
-				result.GlcAverage = average;
+                result.GlcAverage = average;
 				var lastEvent = await mealEvents.OrderByDescending(o => o.CreationDate).FirstOrDefaultAsync();
 
 				if (lastEvent != null)
 					result.lastEventRegistered = lastEvent.MealDate;
 
 				result.EventNumbers = await mealEvents.CountAsync();
+
+				result.Mean = mean;
 
 				var user = await _userRepository.GetByIdAsync(userID);
 				result.UserName = user.UserName;
@@ -174,6 +191,8 @@ namespace OpenGLC.Backend.Services
 			return result;
 
 		}
+
+
 
 		public async Task<List<int>> GetLast3MonthsLevels()
 		{

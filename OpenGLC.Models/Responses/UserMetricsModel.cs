@@ -13,5 +13,6 @@ namespace OpenGLC.Models.Responses
 		public DateTime? lastEventRegistered { get; set; }
 		public decimal GlcAverage { get; set; }
 		public string Name { get; set; }
-	}
+        public decimal Mean { get; set; }
+    }
 }
