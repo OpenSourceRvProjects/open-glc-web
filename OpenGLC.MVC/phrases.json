@@ -1,284 +1,102 @@
 {
     "frases_motivacionales": [
         {
-            "frase": "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
-            "autor": "Robert Collier"
-        },
-        {
-            "frase": "Cree en ti y todo será posible.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "No sueñes tu vida, vive tus sueños.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "La mejor manera de predecir el futuro es creándolo.",
-            "autor": "Peter Drucker"
-        },
-        {
-            "frase": "Nuestra mayor gloria no está en no caer nunca, sino en levantarnos cada vez que caemos.",
-            "autor": "Confucio"
-        },
-        {
-            "frase": "Haz de tu vida un sueño, y de tu sueño una realidad.",
-            "autor": "Antoine de Saint-Exupéry"
-        },
-        {
-            "frase": "El único modo de hacer un gran trabajo es amar lo que haces.",
-            "autor": "Steve Jobs"
-        },
-        {
-            "frase": "No cuentes los días, haz que los días cuenten.",
-            "autor": "Muhammad Ali"
-        },
-        {
-            "frase": "Todo parece imposible hasta que se hace.",
-            "autor": "Nelson Mandela"
-        },
-        {
-            "frase": "Si puedes soñarlo, puedes lograrlo.",
-            "autor": "Walt Disney"
-        },
-        {
-            "frase": "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
-            "autor": "Robert Collier"
-        },
-        {
-            "frase": "No esperes. Nunca va a ser el momento perfecto.",
-            "autor": "Napoleon Hill"
-        },
-        {
-            "frase": "No importa cuántas veces fracases, solo tienes que acertar una vez.",
-            "autor": "Mark Cuban"
-        },
-        {
-            "frase": "La única forma de hacer un gran trabajo es amar lo que haces.",
-            "autor": "Steve Jobs"
-        },
-        {
-            "frase": "El único lugar donde el éxito viene antes que el trabajo es en el diccionario.",
-            "autor": "Vidal Sassoon"
-        },
-        {
-            "frase": "Tu actitud, no tu aptitud, determinará tu altitud.",
-            "autor": "Zig Ziglar"
-        },
-        {
-            "frase": "No sueñes tu vida, vive tu sueño.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "Lo que no te mata te hace más fuerte.",
-            "autor": "Friedrich Nietzsche"
-        },
-        {
-            "frase": "Haz de cada día tu obra maestra.",
-            "autor": "John Wooden"
-        },
-        {
-            "frase": "El fracaso es la oportunidad de comenzar de nuevo con más inteligencia.",
-            "autor": "Henry Ford"
-        },
-        {
-            "frase": "Nunca es demasiado tarde para ser lo que podrías haber sido.",
-            "autor": "George Eliot"
-        },
-        {
-            "frase": "No dejes que el miedo a perder sea mayor que la emoción de ganar.",
-            "autor": "Robert Kiyosaki"
-        },
-        {
-            "frase": "La mejor manera de predecir el futuro es crearlo.",
-            "autor": "Peter Drucker"
-        },
-        {
-            "frase": "Lo único imposible es aquello que no intentas.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "Los grandes espíritus siempre han encontrado una violenta oposición de parte de mentes mediocres.",
+            "frase": "No podemos resolver nuestros problemas con el mismo razonamiento que usamos cuando los creamos",
             "autor": "Albert Einstein"
         },
         {
-            "frase": "Cree que puedes y ya estás a mitad de camino.",
-            "autor": "Theodore Roosevelt"
+            "frase": "El ascensor hacia el éxito no funciona. Tendrás que usar las escaleras, un peldaño cada vez",
+            "autor": "Joe Girard"
         },
         {
-            "frase": "Nunca sueñes con el éxito. Trabaja para lograrlo.",
-            "autor": "Estee Lauder"
+            "frase": "Solo un pequeño pensamiento positivo por la mañana puede cambiar todo tu día",
+            "autor": "Dalai Lama"
         },
         {
-            "frase": "La perseverancia no es una carrera larga; son muchas carreras cortas una tras otra.",
-            "autor": "Walter Elliot"
-        },
-        {
-            "frase": "No importa cuán lento vayas, siempre y cuando no te detengas.",
-            "autor": "Confucio"
-        },
-        {
-            "frase": "El talento gana partidos, pero el trabajo en equipo y la inteligencia ganan campeonatos.",
-            "autor": "Michael Jordan"
-        },
-        {
-            "frase": "Haz lo que puedas, con lo que tengas, donde estés.",
-            "autor": "Theodore Roosevelt"
-        },
-        {
-            "frase": "El único límite a nuestros logros de mañana está en nuestras dudas de hoy.",
-            "autor": "Franklin D. Roosevelt"
-        },
-        {
-            "frase": "No busques el momento perfecto, busca el momento y hazlo perfecto.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "La disciplina es el puente entre las metas y el logro.",
-            "autor": "Jim Rohn"
-        },
-        {
-            "frase": "No cuentes los días, haz que los días cuenten.",
-            "autor": "Muhammad Ali"
-        },
-        {
-            "frase": "El éxito no es para los que piensan que pueden hacerlo, sino para quienes lo hacen.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "La confianza en uno mismo es el primer secreto del éxito.",
-            "autor": "Ralph Waldo Emerson"
-        },
-        {
-            "frase": "No dejes que el ruido de las opiniones ajenas apague tu voz interior.",
-            "autor": "Steve Jobs"
-        },
-        {
-            "frase": "La vida es 10% lo que te sucede y 90% cómo reaccionas a ello.",
-            "autor": "Charles R. Swindoll"
-        },
-        {
-            "frase": "Los obstáculos son esas cosas espantosas que ves cuando apartas los ojos de tu meta.",
-            "autor": "Henry Ford"
-        },
-        {
-            "frase": "El éxito no es el final, el fracaso no es fatal: lo que cuenta es el coraje para continuar.",
-            "autor": "Winston Churchill"
-        },
-        {
-            "frase": "Nunca te rindas, las grandes cosas llevan tiempo.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "Si puedes soñarlo, puedes hacerlo.",
-            "autor": "Walt Disney"
-        },
-        {
-            "frase": "Lo que no te desafía no te cambia.",
-            "autor": "Fred DeVito"
-        },
-        {
-            "frase": "La mejor venganza es un éxito masivo.",
-            "autor": "Frank Sinatra"
-        },
-        {
-            "frase": "Cada día es una oportunidad para cambiar tu vida.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "No hay atajos para cualquier lugar que valga la pena ir.",
-            "autor": "Beverly Sills"
-        },
-        {
-            "frase": "Haz hoy lo que otros no harán, para tener mañana lo que otros no tendrán.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "La diferencia entre ordinario y extraordinario es ese pequeño extra.",
-            "autor": "Jimmy Johnson"
-        },
-        {
-            "frase": "El éxito no se mide por lo que logras, sino por los obstáculos que superas.",
-            "autor": "Booker T. Washington"
-        },
-        {
-            "frase": "Cree en ti mismo y todo será posible.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "La acción es la clave fundamental de todo éxito.",
+            "frase": "La inspiración existe, pero tiene que encontrarte trabajando",
             "autor": "Pablo Picasso"
         },
         {
-            "frase": "No esperes a que las oportunidades lleguen, créalas.",
-            "autor": "Anónimo"
+            "frase": "El que puede tener paciencia, puede tener lo que quiera",
+            "autor": "Benjamin Franklin"
         },
         {
-            "frase": "Nunca te rindas. Hoy es difícil, mañana será peor, pero pasado mañana habrá sol.",
-            "autor": "Jack Ma"
+            "frase": "El que puede tener paciencia, puede tener lo que quiera",
+            "autor": "Jessica Ennis"
         },
         {
-            "frase": "La motivación te impulsa a empezar, el hábito te mantiene en marcha.",
-            "autor": "Jim Ryun"
+            "frase": "La vida es como montar en bicicleta. Para mantenerte en equilibrio debes seguir pedaleando",
+            "autor": " Albert Einstein"
         },
         {
-            "frase": "No te detengas cuando estés cansado, detente cuando hayas terminado.",
-            "autor": "Marilyn Monroe"
-        },
-        {
-            "frase": "El fracaso es simplemente la oportunidad para comenzar de nuevo, esta vez de forma más inteligente.",
+            "frase": "El fracaso no es más que una oportunidad de volver a empezar, esta vez de un modo más inteligente",
             "autor": "Henry Ford"
         },
         {
-            "frase": "Si puedes soñarlo, puedes lograrlo.",
-            "autor": "Zig Ziglar"
+            "frase": "No he fracasado. Solo me he encontrado con 10.000 formas en las que esto no funciona",
+            "autor": "Thomas Edison"
         },
         {
-            "frase": "La actitud es una pequeña cosa que hace una gran diferencia.",
-            "autor": "Winston Churchill"
+            "frase": "Si cuidamos los pequeños momentos, los años cuidarán de nosotros",
+            "autor": "Maria Edgeworth"
         },
         {
-            "frase": "Haz lo que amas y nunca tendrás que trabajar un día en tu vida.",
+            "frase": "El único modo de hacer un gran trabajo es amar lo que haces",
+            "autor": "Steve Jobs"
+        },
+        {
+            "frase": "La mejor manera de predecir el futuro es crearlo",
+            "autor": "Peter F. Drucker"
+        },
+        {
+            "frase": "Lo más importante en la comunicación es escuchar lo que no se dice",
+            "autor": "Peter F. Drucker"
+        },
+        {
+            "frase": "No podemos prever el futuro, pero sí podemos crearlo",
+            "autor": "Peter F. Drucker"
+        },
+        {
+            "frase": "La eficiencia es hacer las cosas bien; la eficacia es hacer las cosas correctas",
+            "autor": "Peter F. Drucker"
+        },
+        {
+            "frase": "No importa qué tan lento vayas, siempre y cuando no te detengas",
             "autor": "Confucio"
         },
         {
-            "frase": "No dejes que nadie apague tu brillo.",
-            "autor": "Marilyn Monroe"
+            "frase": "Siempre parece imposible hasta que se hace",
+            "autor": "Nelson Mandela"
         },
         {
-            "frase": "La mayor gloria no está en no caer nunca, sino en levantarnos cada vez que caemos.",
-            "autor": "Confucio"
+            "frase": "O tú controlas el día, o el día te controla a ti",
+            "autor": "Jim Rohn"
         },
         {
-            "frase": "El éxito consiste en obtener lo que se desea. La felicidad, en disfrutar lo que se obtiene.",
-            "autor": "Henry Ford"
+            "frase": "Cree que puedes, y ya estarás a medio camino",
+            "autor": "Theodore Roosevelt"
         },
         {
-            "frase": "La vida es como montar en bicicleta. Para mantener el equilibrio, debes seguir adelante.",
-            "autor": "Albert Einstein"
+            "frase": "El éxito es la suma de pequeños esfuerzos repetidos día tras día",
+            "autor": "Robert Collier"
         },
         {
-            "frase": "Si no te gusta algo, cámbialo. Si no puedes cambiarlo, cambia tu actitud.",
-            "autor": "Maya Angelou"
+            "frase": "El pasado puede doler. Pero, tal como yo lo veo, puedes o huir de él o aprender",
+            "autor": "El Rey León"
         },
         {
-            "frase": "Cada logro comienza con la decisión de intentarlo.",
-            "autor": "Gail Devers"
+            "frase": "No importa lo que la gente diga de ti, lo que importa es lo que tú crees que eres",
+            "autor": "Shrek"
         },
         {
-            "frase": "La perseverancia es la clave del éxito.",
-            "autor": "Charles Chaplin"
+            "frase": "No son las habilidades lo que demuestra lo que somos, son nuestras decisiones",
+            "autor": "Harry Potter y la cámara de los secretos"
         },
         {
-            "frase": "No te detengas hasta estar orgulloso.",
-            "autor": "Anónimo"
-        },
-        {
-            "frase": "Los sueños no funcionan a menos que tú trabajes.",
-            "autor": "John C. Maxwell"
-        },
-        {
-            "frase": "No dejes que el miedo te detenga.",
-            "autor": "Anónimo"
+            "frase": "El miedo lleva a la ira, la ira lleva al odio, el odio lleva al sufrimiento...",
+            "autor": "Star Wars. Episodio III"
         }
+
+
     ]
 }
